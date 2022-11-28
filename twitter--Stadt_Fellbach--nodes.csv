@@ -1,4 +1,4 @@
-id,handle,followers_count,friends_count,isProxy
+id,name,followers_count,friends_count,isProxy
 0,"derspiegel",3103525,353,0
 1,"zeitonline",2574003,30,0
 2,"tagesschau",3892299,324,0
