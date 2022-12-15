@@ -1,0 +1,36 @@
+id,name,party,expert
+UL,Ursala von der Leyen ,CDU,NA
+LK,Lars Klingebeil,SPD,NA
+NR,Norbert Röttgen,CDU,NA
+SW,Sarah Wagenknecht ,Die Linke,NA
+CS,Constanze Stelzenmüller ,NA,Juristin
+CL,Christian Lindner,FDP,NA
+KS,Karl Schlögel,NA,Historiker
+LM,Ljudmyla Melnyk,NA,Ukrainerin 
+KD,Kristina Duntz,NA,Stellvertretende Leiterin der Hauptstadtredaktion des Redaktionsnetzwerks Deutschland
+ET,Egils Tevits ,NA,Lettischer Präsident 
+RH,Robert Habeck,B90/Die Grünen,NA
+CM,Claudia Major,NA,Politikwissenschaftlerin
+KP,Katja Petrowskaja,NA,Ukrainerin 
+RK,Roderich Kiesewetter,CDU,NA
+AB,Annalena Baerbock,B90/Die Grünen,NA
+FT,Frans Timmermans,NA,EU-Kommission
+AM,Andrij Melnyk,NA,Botschafter Ukraine
+AL,Alexander Graf Lambsdorff,FDP,NA
+ER,Egon Ramms,NA,General Bundeswehr
+500,Episode 500,NA,NA
+501,Episode 501,NA,NA
+502,Episode 502,NA,NA
+503,Episode 503,NA,NA
+CDU,CDU,CDU,NA
+SPD,SPD,SPD,NA
+B90DG,Bündnis 90/Die Grünen,B90/Die Grünen,NA
+FDP,FDP,FDP,NA
+DL,Die Linke,Die Linke,NA
+JUR,Jurist*in,NA,NA
+HIS,Historiker*in,NA,NA
+UKR,Ukrainer*in,NA,NA
+JOURN,Stellv. Leiterin Hauptstadtredaktion Redaktionsnetzwerk Deutschland,NA,NA
+POL,Andere Politiker,NA,NA
+POLWI,Politikwissenschaftler*in,NA,NA
+MIL,Militär,NA,NA
