@@ -1,0 +1,123 @@
+---
+title: "Testat Teil 2"
+author: "Maria Petalidou/mp171"
+date: "21 Dezember 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Daten und Codebuch
+
+Die Daten und das Codebuch sind in meinem persoenlichen GitHub-Account (https://github.com/mp171) zu finden. Aus Zeitgruenden habe ich selbst an der Aufgabe gearbeitet; ich hatte erst Mittwoch wirklich Zeit, die Aufgabe zu bearbeiten und wollte meine Tandempartnerin nicht verzoegern.  
+  
+  Im Nachfolgenden werden die Edge- und Nodeeigenschaften genauer erklaert.  
+  
+  Hinweis: Meine Version von R-Studio kann Umlaute nicht korrekt darstellen. Deswegen schreibe ich sie im Folgenden aus.
+  
+
+## Edge-Attribute
+
+from = ID des initiierenden Knoten
+
+to = ID des erhaltenden Knoten
+
+relation = Art der Beziehung,
+1 = Mitglied
+2 = bekannt (Personen und Organisationen; Bekanntschaften, die im Artikel der taz explizit herausgehoben werden)
+3 = Organisationen, die eine Verbindung haben
+
+Anmerkungen: Als Mitglied gelten sowohl momentane als auch ehemalige Teilnehmer*innen einer Bewegung/Organisation.
+
+## Node-Attribute
+
+id = ID aus der Edgelist
+
+name = Voller Name der Person/Organisation
+
+type = Gibt an, ob es sich um Person oder Organisation handelt, 
+1 = Person,
+2 = Organisation
+
+sector = Gibt an, aus welchem gesellschaftlichen Sektor die Person oder Organisation stammt, 
+1 = Politik,
+2 = Judikative,
+3 = Exekutive((Ex-)Militaer, Polizeibeamt*innen),
+4 = Gruppierungen,
+5 = Andere,
+6 = Adel
+
+Anmerkungen: Querdenker wird hier als allgemeiner Begriff fuer Personen genutzt, die in irgendeiner Art und Weise Corona-Verschwoerungstheorien verbreitet, an Demos teilgenommen haben oder anderweitig in diesem Kontext aufgefallen sind.
+
+## Netzwerk einlesen
+
+```{r Netzwerk einlesen}
+# Programmbibliothek laden
+library(igraph)
+
+# Einlesen der Edge- und Nodelist
+edge <- read.csv("https://raw.githubusercontent.com/mp171/SozialeNetzwerke/main/Testat%20Datenerhebung%20-%20Edges.csv", header=T, as.is=T, sep = ",")
+
+node <- read.csv("https://raw.githubusercontent.com/mp171/SozialeNetzwerke/main/Testat%20Datenerhebung%20-%20Nodes.csv", header=T, as.is=T, sep = ",")
+
+# Matrix erstellen
+edgematrix <-as.matrix(edge)
+
+# Zusammenfuehren von Edge- und Nodelist
+reichsbuerger <- graph_from_data_frame(d=edgematrix, vertices=node, directed=T)
+reichsbuerger
+```
+
+## Visualisierung
+
+```{r Einfache Visualisierung des Netzwerks, fig.height=5, fig.width=9}
+
+# Farben festlegen
+
+V(reichsbuerger)[V(reichsbuerger)$sector == "1"]$color <- "blue"
+V(reichsbuerger)[V(reichsbuerger)$sector == "2"]$color <- "yellow"
+V(reichsbuerger)[V(reichsbuerger)$sector == "3"]$color <- "green"
+V(reichsbuerger)[V(reichsbuerger)$sector == "4"]$color <- "red"
+V(reichsbuerger)[V(reichsbuerger)$sector == "5"]$color <- "purple"
+V(reichsbuerger)[V(reichsbuerger)$sector == "6"]$color <- "orange"
+
+# Formen two-Netzwerk festlegen
+V(reichsbuerger)[V(reichsbuerger)$type == 1]$shape <- "circle" # Person
+V(reichsbuerger)[V(reichsbuerger)$type == 2]$shape <- "square" # Organisation
+
+# Einfacher plot
+
+plot(reichsbuerger,
+     asp=0,
+     layout=layout_with_kk,
+     rescale=TRUE,
+     vertex.size=degree(reichsbuerger)*3,
+     vertex.frame.color="black",
+     edge.color="black",
+     edge.arrow.size=.5,
+     label.color="black",
+     main="Reichsbuerger-Razzia",
+     sub="Verbindungen zwischen Verhafteten und anderen Organisationen")
+
+
+```
+
+## Fragen beantworten
+
+
+Frage 1: Wie interpretieren Sie das erstellte Netzwerk? Wieviel Zeit haben Sie dafuer benoetigt (ohne Fehlerkorrektur sollte das in maximal ein bis drei Stunden machbar sein)?
+
+Das Netzwerk zeigt, dass signifikante Beziehungen zwischen der terroristischen Organisation der Reichsbuerger und der Querdenker-Bewegung und der AfD bestehen. Das ist fuer mich ehrlich gesagt nicht besonders ueberraschend. Sowohl die Querdenker-Bewegung als auch die AfD sind bereits in der Vergangenheit dafuer aufgefallen, dass einige ihrer Mitglieder in der rechtsextremen Szenen unterwegs sind.
+
+Ich wuerde meinen eigenen Arbeitsaufwand auf ca. 2 Stunden schaetzen, ich habe aber auch nicht besonders konzentriert immer gearbeitet. Allgemein war es eine relativ simple Aufgabe.
+
+Frage 2: Was war Ihr groesster Lernerfolg der Veranstaltung?
+
+Ich habe meine Kentnisse von R-Studio verbessert und auch viel ueber die Netzwerkforschung gelernt. Bei mir haengen geblieben ist zudem die Vorteile von schwachen Beziehungen.
+
+Frage 3: Welches Netzwerk moechten Sie gerne selbst untersuchen? Wenn Sie eine Tandem-Abgabe gemacht haben, bitte gerne zwei oder mehr Netzwerk-Ideen einreichen.
+
+Ich bin grosser Fan von koreanischen Musikern und wuerde dort gerne Verbindungen zwischen Kuenstler*innen und Gruppen untersuchen. Geschichte interessiert mich ebenfalls sehr und ich koennte mir auch vorstellen, Netzwerke wie das der Operation Walkuere zu untersuchen. 
+
