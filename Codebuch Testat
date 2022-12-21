@@ -1,0 +1,27 @@
+Edge-Attribute
+
+from = ID des initiierenden Knoten
+to = ID des erhaltenden Knoten
+relation = Art der Beziehung,
+1 = Mitglied
+2 = bekannt (Personen und Organisationen; Bekanntschaften, die im Artikel der taz explizit herausgehoben werden)
+3 = Organisationen, die eine Verbindung haben
+
+Anmerkungen: Als Mitglied gelten sowohl momentane als auch ehemalige Teilnehmer*innen einer Bewegung/Organisation.
+
+Node-Attribute
+
+id = ID aus der Edgelist
+name = Voller Name der Person/Organisation
+type = Gibt an, ob es sich um Person oder Organisation handelt, 
+1 = Person,
+2 = Organisation
+sector = Gibt an, aus welchem gesellschaftlichen Sektor die Person oder Organisation stammt, 
+1 = Politik,
+2 = Judikative,
+3 = Exekutive((Ex-)Militaer, Polizeibeamt*innen),
+4 = Gruppierungen,
+5 = Andere,
+6 = Adel
+
+Anmerkungen: Querdenker wird hier als allgemeiner Begriff fuer Personen genutzt, die in irgendeiner Art und Weise Corona-Verschwoerungstheorien verbreitet, an Demos teilgenommen haben oder anderweitig in diesem Kontext aufgefallen sind.
